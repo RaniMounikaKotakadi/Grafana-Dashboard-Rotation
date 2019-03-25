@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title>Diksha Grafana Dashboard Rotate</title>
+        <style>
+            body{
+                margin:0;
+            }
+            #dashboard{
+                height: 100%;
+                width: 100%;
+                border:none;
+
+            }
+        </style>
+    </head>
+    <body>
+        <iframe src="" frameborder="0" id="dashboard"></iframe>
+        <script>
+            var listOfDashboardUrls = [
+                "https://****.com/grafana/dashboard/db/nginx?orgId=1&from=now%2Fd&to=now&refresh=10s","https://****.com/grafana/dashboard/db/nginx?panelId=3&fullscreen&orgId=1&from=now%2Fd&to=now&refresh=10s", "https://*****.com/grafana/dashboard/db/lp-pipeline-metrics?refresh=10s&orgId=1&from=now-3h&to=now"
+            ];
+            var totalDashboards = listOfDashboardUrls.length;
+            var currentDashboard = 0;
+            function rotateDashboard(){
+                dashboardElement = document.getElementById('dashboard');
+                dashboardElement.setAttribute("src", listOfDashboardUrls[currentDashboard]);
+                currentDashboard += 1;
+                currentDashboard = currentDashboard == totalDashboards ? 0:currentDashboard;
+                setTimeout(rotateDashboard, 30000);
+            }
+            rotateDashboard();
+    </script>
+    </body>
